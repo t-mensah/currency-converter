@@ -1,28 +1,36 @@
-function Keypad({ value, onInput }) {
+function Keypad({ value, onChange }) {
+  const keys = ["7", "8", "9", "4", "5", "6", "1", "2", "3", "C", "0", "."];
+
   const handleClick = (key) => {
-    if (key === "⌫") {
-      onInput(value.slice(0, -1));
+    if (key === "C") {
+      onChange("");
       return;
     }
-
-    if (key === ".") {
-      if (value.includes(".")) return;
-    }
-
-    onInput(value + key);
+    onChange(value + key);
   };
 
   return (
-    <div className="grid grid-cols-3 gap-3 text-center text-xl font-semibold">
-      {["1","2","3","4","5","6","7","8","9",".","0","⌫"].map((key) => (
-        <button
-          key={key}
-          onClick={() => handleClick(key)}
-          className="py-3 rounded bg-blue-600 hover:bg-blue-500"
-        >
-          {key}
-        </button>
-      ))}
+    <div className="bg-blue-800 rounded-2xl p-4">
+      <div className="grid grid-cols-3 gap-4">
+        {keys.map((key) => (
+          <button
+            key={key}
+            onClick={() => handleClick(key)}
+            className="
+              h-14
+              text-white
+              text-xl
+              font-medium
+              rounded-lg
+              hover:bg-blue-600
+              active:scale-95
+              transition
+            "
+          >
+            {key}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }

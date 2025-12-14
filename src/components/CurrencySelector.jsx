@@ -1,9 +1,18 @@
-function CurrencySelector() {
+const currencies = ["USD", "EUR", "GBP", "GHS", "NGN"];
+
+function CurrencySelector({ value, onChange }) {
   return (
-    <div className="flex items-center gap-2 text-lg font-medium">
-      <span>USD</span>
-      <span>▼</span>
-    </div>
+    <select
+      className="w-full p-3 rounded-lg bg-black text-white outline-none"
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+    >
+      {currencies.map((cur) => (
+        <option key={cur} value={cur}>
+          {cur}
+        </option>
+      ))}
+    </select>
   );
 }
 
